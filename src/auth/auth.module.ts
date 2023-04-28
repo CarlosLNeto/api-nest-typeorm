@@ -12,7 +12,6 @@ import { FileModule } from "src/file/file.module";
         secret: process.env.JWT_SECRET
         }),
         forwardRef(() => UserModule),
-        PrismaModule,
         FileModule
     ],
     controllers: [AuthController],
