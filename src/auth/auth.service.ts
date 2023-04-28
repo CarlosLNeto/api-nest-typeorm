@@ -4,6 +4,9 @@ import { AuthRegisterDTO } from "./dto/auth-register.dto";
 import { UserService } from "src/user/user.service";
 import * as bcrypt from 'bcrypt';
 import { MailerService } from "@nestjs-modules/mailer/dist";
+import { UserEntity } from "src/user/entity/user.entity";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
 
 
 @Injectable()
@@ -15,10 +18,12 @@ export class AuthService{
 
     constructor(private readonly jwtService: JwtService,
          private readonly userService: UserService,
-         private readonly mailer: MailerService
-               ) { }
+         private readonly mailer: MailerService,
+         @InjectRepository(UserEntity)
+         private usersRepository: Repository<UserEntity>
+        ) { }
 
-    createToken(user: User){
+    createToken(user: UserEntity){
         return {
             acessToken: this.jwtService.sign({
                 id: user.id,
@@ -57,7 +62,7 @@ export class AuthService{
 
     async login(email: string, password: string){
 
-        const user = await this.prisma.user.findFirst({
+        const user = await this.usersRepository.findOne({
             where:{
                 email
             }
@@ -77,7 +82,7 @@ export class AuthService{
 
     async forget(email: string){
 
-        const user = await this.prisma.user.findFirst({
+        const user = await this.usersRepository.findOne({
             where:{
                 email
             }
@@ -125,14 +130,11 @@ export class AuthService{
             const salt = await bcrypt.genSalt();
             password = await bcrypt.hash(password, salt);
 
-            const user = await this.prisma.user.update({
-                where:{
-                    id: data.id,
-                },
-                data:{
+            await this.usersRepository.update(Number(data.id), {
                     password,
-                },
             });
+
+            const user = await this.userService.show(Number(data.id));
 
         return this.createToken(user);
 
@@ -140,6 +142,7 @@ export class AuthService{
         } catch (e){
             throw new BadRequestException(e);
         }
+
 
         
 
