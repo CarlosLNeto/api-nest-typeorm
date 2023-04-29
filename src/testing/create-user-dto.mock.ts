@@ -5,6 +5,6 @@ export const createUserDTO:CreateUserDTO ={
     birthAt: '2000-01-01',
     email: 'teste@gmail.com',
     name: 'Teste Unitario',
-    password: '123456',
+    password: 'senha123',
     role: Role.User
 }

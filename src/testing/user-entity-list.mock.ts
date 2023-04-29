@@ -6,7 +6,7 @@ export const userEntityList: UserEntity[] = [{
     email: 'teste@gmail.com',
     birthAt: new Date('2000-01-01'),
     id: 1,
-    password: '$2b$10$Yu/sVkHMWVCVqLeJOSMssOkslfjEh5iIEOAkzjyPnJ2KWq0QEC4py',
+    password: '$2b$10$Nw7yEhnFLgsuD3VaDswC5ed.PQ2H1YVp1R1hwwpVgMpjNnFqW/C5C',
     role: Role.Admin,
     createdAt: new Date(),
     updatedAt: new Date()
@@ -16,7 +16,7 @@ export const userEntityList: UserEntity[] = [{
     email: 'teste@gmail.com',
     birthAt: new Date('2000-01-01'),
     id: 2,
-    password: '$2b$10$Yu/sVkHMWVCVqLeJOSMssOkslfjEh5iIEOAkzjyPnJ2KWq0QEC4py',
+    password: '$2b$10$Nw7yEhnFLgsuD3VaDswC5ed.PQ2H1YVp1R1hwwpVgMpjNnFqW/C5C',
     role: Role.Admin,
     createdAt: new Date(),
     updatedAt: new Date()
@@ -26,7 +26,7 @@ export const userEntityList: UserEntity[] = [{
     email: 'teste@gmail.com',
     birthAt: new Date('2000-01-01'),
     id: 3,
-    password: '$2b$10$Yu/sVkHMWVCVqLeJOSMssOkslfjEh5iIEOAkzjyPnJ2KWq0QEC4py',
+    password: '$2b$10$Nw7yEhnFLgsuD3VaDswC5ed.PQ2H1YVp1R1hwwpVgMpjNnFqW/C5C',
     role: Role.Admin,
     createdAt: new Date(),
     updatedAt: new Date()
