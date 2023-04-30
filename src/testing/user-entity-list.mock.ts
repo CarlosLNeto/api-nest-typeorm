@@ -1,7 +1,8 @@
-import { Role } from "../enums/role.enum";
-import { UserEntity } from "../user/entity/user.entity";
+import { Role } from '../enums/role.enum';
+import { UserEntity } from '../user/entity/user.entity';
 
-export const userEntityList: UserEntity[] = [{
+export const userEntityList: UserEntity[] = [
+  {
     name: 'Teste Unitario',
     email: 'teste@gmail.com',
     birthAt: new Date('2000-01-01'),
@@ -9,9 +10,9 @@ export const userEntityList: UserEntity[] = [{
     password: '$2b$10$Nw7yEhnFLgsuD3VaDswC5ed.PQ2H1YVp1R1hwwpVgMpjNnFqW/C5C',
     role: Role.Admin,
     createdAt: new Date(),
-    updatedAt: new Date()
-},
-{
+    updatedAt: new Date(),
+  },
+  {
     name: 'Carlos Neto',
     email: 'teste@gmail.com',
     birthAt: new Date('2000-01-01'),
@@ -19,9 +20,9 @@ export const userEntityList: UserEntity[] = [{
     password: '$2b$10$Nw7yEhnFLgsuD3VaDswC5ed.PQ2H1YVp1R1hwwpVgMpjNnFqW/C5C',
     role: Role.Admin,
     createdAt: new Date(),
-    updatedAt: new Date()
-},
-{
+    updatedAt: new Date(),
+  },
+  {
     name: 'Kaue Franca',
     email: 'teste@gmail.com',
     birthAt: new Date('2000-01-01'),
@@ -29,5 +30,6 @@ export const userEntityList: UserEntity[] = [{
     password: '$2b$10$Nw7yEhnFLgsuD3VaDswC5ed.PQ2H1YVp1R1hwwpVgMpjNnFqW/C5C',
     role: Role.Admin,
     createdAt: new Date(),
-    updatedAt: new Date()
-}]
+    updatedAt: new Date(),
+  },
+];

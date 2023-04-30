@@ -36,9 +36,8 @@ describe('AppController (e2e)', () => {
       .post('/auth/register')
       .send(authRegisterDTO);
 
-      expect(response.statusCode).toEqual(201);
-      expect(typeof response.body.accessToken).toEqual('string');
-
+    expect(response.statusCode).toEqual(201);
+    expect(typeof response.body.accessToken).toEqual('string');
   });
 
   it('Tentar fazer login com o novo usuário', async () => {
@@ -46,14 +45,13 @@ describe('AppController (e2e)', () => {
       .post('/auth/login')
       .send({
         email: authRegisterDTO.email,
-        password: authRegisterDTO.password
+        password: authRegisterDTO.password,
       });
 
-      expect(response.statusCode).toEqual(201);
-      expect(typeof response.body.accessToken).toEqual('string');
+    expect(response.statusCode).toEqual(201);
+    expect(typeof response.body.accessToken).toEqual('string');
 
-      accessToken = response.body.accessToken;
-
+    accessToken = response.body.accessToken;
   });
 
   it('Obter os dados do usuário logado', async () => {
@@ -62,22 +60,24 @@ describe('AppController (e2e)', () => {
       .set('Authorization', `bearer ${accessToken}`)
       .send();
 
-      expect(response.statusCode).toEqual(201);
-      expect(typeof response.body.id).toEqual('number');
-      expect(response.body.role).toEqual(Role.User);
-
+    expect(response.statusCode).toEqual(201);
+    expect(typeof response.body.id).toEqual('number');
+    expect(response.body.role).toEqual(Role.User);
   });
 
   it('Registrar um novo usuário como administrador', async () => {
     const response = await request(app.getHttpServer())
       .post('/auth/register')
-      .send({...authRegisterDTO, role: Role.Admin, email: 'sdfsdfds@hcode.com.br'});
+      .send({
+        ...authRegisterDTO,
+        role: Role.Admin,
+        email: 'sdfsdfds@hcode.com.br',
+      });
 
-      expect(response.statusCode).toEqual(201);
-      expect(typeof response.body.accessToken).toEqual('string');
+    expect(response.statusCode).toEqual(201);
+    expect(typeof response.body.accessToken).toEqual('string');
 
-      accessToken = response.body.accessToken;
-
+    accessToken = response.body.accessToken;
   });
 
   it('Validar se a função do novo usuario ainda é User', async () => {
@@ -86,11 +86,11 @@ describe('AppController (e2e)', () => {
       .set('Authorization', `bearer ${accessToken}`)
       .send();
 
-      expect(response.statusCode).toEqual(201);
-      expect(typeof response.body.id).toEqual('number');
-      expect(response.body.role).toEqual(Role.User);
+    expect(response.statusCode).toEqual(201);
+    expect(typeof response.body.id).toEqual('number');
+    expect(response.body.role).toEqual(Role.User);
 
-      userId = response.body.id;
+    userId = response.body.id;
   });
 
   it('Erro ao tentar acessar a lista de usuários', async () => {
@@ -99,13 +99,11 @@ describe('AppController (e2e)', () => {
       .set('Authorization', `bearer ${accessToken}`)
       .send();
 
-      expect(response.statusCode).toEqual(403);
-      expect(response.body.error).toEqual('Forbidden');
-
+    expect(response.statusCode).toEqual(403);
+    expect(response.body.error).toEqual('Forbidden');
   });
 
   it('Alterando manualmente o usuário para Role Administrador', async () => {
-    
     const ds = await dataSource.initialize();
 
     const queryRunner = ds.createQueryRunner();
@@ -122,7 +120,6 @@ describe('AppController (e2e)', () => {
 
     expect(rows.length).toEqual(1);
     expect(rows[0].role).toEqual(Role.Admin);
-
   });
 
   it('Tentar acessar a lista de usuários com acesso', async () => {
@@ -131,9 +128,7 @@ describe('AppController (e2e)', () => {
       .set('Authorization', `bearer ${accessToken}`)
       .send();
 
-      expect(response.statusCode).toEqual(200);
-      expect(response.body.length).toEqual(2);
-
+    expect(response.statusCode).toEqual(200);
+    expect(response.body.length).toEqual(2);
   });
-
 });

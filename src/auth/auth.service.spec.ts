@@ -66,16 +66,16 @@ describe('AuthService', () => {
       expect(result).toEqual({ success: true });
     });
 
-     test('reset method', async () => {
-       const result = await authService.reset('senha123', resetToken);
+    test('reset method', async () => {
+      const result = await authService.reset('senha123', resetToken);
 
-       expect(result).toEqual({ accessToken });
-     });
+      expect(result).toEqual({ accessToken });
+    });
 
-     test('register method', async () => {
-       const result = await authService.register(authRegisterDTO);
+    test('register method', async () => {
+      const result = await authService.register(authRegisterDTO);
 
-       expect(result).toEqual({ accessToken });
-     });
+      expect(result).toEqual({ accessToken });
+    });
   });
 });
