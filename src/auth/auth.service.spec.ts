@@ -67,7 +67,7 @@ describe('AuthService', () => {
     });
 
      test('reset method', async () => {
-       const result = await authService.reset('654321', resetToken);
+       const result = await authService.reset('senha123', resetToken);
 
        expect(result).toEqual({ accessToken });
      });
